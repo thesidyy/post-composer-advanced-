@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: postcomposer-api
+    runtime: node
+    rootDir: server
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
+      - key: CORS_ORIGIN
+        sync: false          # set to your Vercel URL after deploying frontend
+    disk:
+      name: sqlite-data
+      mountPath: /data
+      sizeGB: 1
+    healthCheckPath: /health
